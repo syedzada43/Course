@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rendered Course by Zyptonite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Reset & Base Styles --- */
+        :root {
+            --hot-pink: #F50057;
+            --electric-blue: #00BFFF;
+            --lime-green: #39FF14;
+            --dark-bg: #121212;
+            --card-bg: #1E1E1E;
+            --light-text: #EAEAEA;
+            --gray-text: #b3b3b3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        /* --- Layout & Container --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+        
+        section:nth-child(even) {
+            background-color: var(--card-bg);
+        }
+
+        /* --- Typography & Headings --- */
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--electric-blue);
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--lime-green);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            color: var(--gray-text);
+        }
+
+        /* --- Header / Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('https://www.transparenttextures.com/patterns/carbon-fibre-v2.png');
+        }
+        
+        .company-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--electric-blue);
+            letter-spacing: 1px;
+        }
+
+        .company-tagline {
+            font-size: 1rem;
+            color: var(--gray-text);
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--hot-pink), var(--lime-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .hero .course-tagline {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: var(--light-text);
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            text-decoration: none;
+            color: var(--dark-bg);
+            background-color: var(--lime-green);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(57, 255, 20, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--hot-pink);
+            color: var(--light-text);
+        }
+        
+        .btn-secondary:hover {
+             box-shadow: 0 10px 20px rgba(245, 0, 87, 0.3);
+        }
+        
+        .btn-link {
+            background-color: transparent;
+            border: 2px solid var(--electric-blue);
+            color: var(--electric-blue);
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .btn-link:hover {
+            background-color: var(--electric-blue);
+            color: var(--dark-bg);
+            box-shadow: none;
+            transform: translateY(-2px);
+        }
+
+        /* --- Features Section --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background-color: var(--dark-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--hot-pink);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card h3 {
+            color: var(--hot-pink);
+            margin-bottom: 15px;
+        }
+
+        /* --- NEW: Tabbed Interface Section --- */
+        .tabs-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .tab-link {
+            padding: 10px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-text);
+            background: transparent;
+            border: 2px solid var(--card-bg);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-link.active {
+            color: var(--lime-green);
+            border-color: var(--lime-green);
+            background-color: rgba(57, 255, 20, 0.1);
+        }
+        .tab-panel {
+            display: none; /* Hidden by default */
+        }
+        .tab-panel.active {
+            display: block; /* Shown when active */
+        }
+
+        /* --- Modules Section --- */
+        .modules-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .module-item {
+            background-color: var(--dark-bg);
+            margin-bottom: 20px;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid var(--electric-blue);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .module-item h3 {
+            color: var(--light-text);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .module-duration {
+            font-weight: 600;
+            color: var(--electric-blue);
+            background-color: rgba(0, 191, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            white-space: nowrap;
+            margin-left: 20px;
+        }
+        
+        .module-description {
+            color: var(--gray-text);
+            width: 100%;
+            margin-top: 5px;
+        }
+        
+        /* --- NEW: Inspiration Section --- */
+        .inspiration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .inspiration-card {
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--card-bg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .inspiration-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+        .card-screenshot {
+            height: 200px;
+            background-color: var(--electric-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+            background: linear-gradient(45deg, var(--electric-blue), var(--lime-green));
+        }
+        .card-info {
+            padding: 25px;
+        }
+        .card-info h3 {
+            color: var(--light-text);
+            margin-bottom: 10px;
+        }
+        .card-info p {
+            color: var(--gray-text);
+            margin-bottom: 20px;
+        }
+
+        /* --- Instructor Section --- */
+        .instructor-flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 50px auto 0 auto;
+        }
+
+        .instructor-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--lime-green);
+            object-fit: cover;
+            /* Add a background color in case the image doesn't load */
+            background-color: var(--card-bg);
+        }
+
+        .instructor-bio h3 {
+            margin-bottom: 10px;
+        }
+
+        .instructor-bio p {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+        }
+
+        /* --- Pricing Section --- */
+        .pricing-card {
+            max-width: 500px;
+            margin: 50px auto 0 auto;
+            padding: 40px;
+            background-color: var(--dark-bg);
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--hot-pink);
+            box-shadow: 0 0 30px rgba(245, 0, 87, 0.3);
+        }
+
+        .price-tag {
+            margin-bottom: 20px;
+        }
+
+        .original-price {
+            font-size: 1.5rem;
+            color: var(--gray-text);
+            text-decoration: line-through;
+        }
+
+        .discount-price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--lime-green);
+            margin: 10px 0;
+        }
+
+        .discount-badge {
+            display: inline-block;
+            background-color: var(--hot-pink);
+            color: var(--light-text);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .enrollment-info {
+            margin-top: 30px;
+            font-size: 1.1rem;
+        }
+
+        .enrollment-info a {
+            color: var(--electric-blue);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background-color: var(--card-bg);
+            color: var(--gray-text);
+        }
+        
+        footer .company-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            .hero .course-tagline {
+                font-size: 1.2rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .instructor-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+            .module-item {
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .module-duration {
+                margin-left: 0;
+            }
+            .inspiration-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="company-name">Zyptonite</div>
+            <p class="company-tagline">crafting digital future</p>
+            <h1>Rendered</h1>
+            <p class="course-tagline">From visual design to interactive reality.</p>
+            <a href="#pricing" class="btn">Enroll Now for 10% OFF</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Key Features Section -->
+        <section id="features">
+            <div class="container">
+                <h2>Why Learn With Rendered?</h2>
+                <p class="section-subtitle">Unlock your potential and build the web of tomorrow. This course is your launchpad into a thriving digital career.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Web Development Foundation</h3>
+                        <p>Learning HTML, CSS, and JavaScript provides a solid foundation for web development, enabling you to build robust and interactive web applications.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Career Opportunities</h3>
+                        <p>Knowledge of these core technologies is essential for a career in web development and can lead to job opportunities in a variety of exciting industries.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Improved User Experience</h3>
+                        <p>Create web applications that provide a better user experience, with improved usability, accessibility, and interactivity that users will love.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW Tabbed Interface Section -->
+        <section id="curriculum">
+            <div class="container">
+                <h2>What You'll Learn & Build</h2>
+                <p class="section-subtitle">Switch between the detailed curriculum and real-world examples of what you'll be able to create after completing the course.</p>
+                
+                <!-- Tab Navigation -->
+                <div class="tabs-nav">
+                    <button class="tab-link active" data-tab="modules">Course Modules</button>
+                    <button class="tab-link" data-tab="inspiration">Inspiration</button>
+                </div>
+
+                <!-- Tab Panels -->
+                <div class="tabs-panels">
+                    <!-- Modules Panel -->
+                    <div id="modules" class="tab-panel active">
+                        <div class="modules-list">
+                            <div class="module-item">
+                                <div>
+                                    <h3>1. HTML Fundamentals</h3>
+                                    <p class="module-description">Covers basic HTML tags, semantic HTML, and building a simple web page.</p>
+                                </div>
+                                <span class="module-duration">Days 1-10</span>
+                            </div>
+                            <div class="module-item">
+                                <div>
+                                    <h3>2. CSS Styling Mastery</h3>
+                                    <p class="module-description">Covers CSS basics, selectors, box model, Flexbox, Grid, and responsive design.</p>
+                                </div>
+                                <span class="module-duration">Days 11-25</span>
+                            </div>
+                            <div class="module-item">
+                                <div>
+                                    <h3>3. JavaScript Interactivity</h3>
+                                    <p class="module-description">Covers JavaScript basics, DOM manipulation, events, and building interactive web pages.</p>
+                                </div>
+                                <span class="module-duration">Days 26-45</span>
+                            </div>
+                            <div class="module-item">
+                                <div>
+                                    <h3>4. Final Project & Next Steps</h3>
+                                    <p class="module-description">Focuses on building a capstone project, reviewing code, and exploring next steps in web development.</p>
+                                </div>
+                                <span class="module-duration">Days 46-50</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inspiration Panel -->
+                    <div id="inspiration" class="tab-panel">
+                        <div class="inspiration-grid">
+                            <div class="inspiration-card">
+                                <div class="card-screenshot">
+                                    <p>Portfolio Project</p>
+                                </div>
+                                <div class="card-info">
+                                    <h3>Personal Portfolio</h3>
+                                    <p>A sleek, modern portfolio to showcase your projects and professional skills to potential employers.</p>
+                                    <a href="https://syedzada43.github.io/portfolio" target="_blank" class="btn btn-link">View Live Site</a>
+                                </div>
+                            </div>
+                            <div class="inspiration-card">
+                                <div class="card-screenshot">
+                                    <p>Quiz App Project</p>
+                                </div>
+                                <div class="card-info">
+                                    <h3>Interactive Quiz App</h3>
+                                    <p>An engaging quiz application built with JavaScript to test knowledge, a common and fun project.</p>
+                                    <a href="https://syedzada43.github.io/quiz" target="_blank" class="btn btn-link">View Live Site</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Instructor Section -->
+        <section id="instructor">
+            <div class="container">
+                <h2>Meet Your Instructor</h2>
+                <div class="instructor-flex">
+                    <!-- IMPORTANT: Make sure you have an image named "instructor.png" in the same folder as this HTML file -->
+                    <img src="instructor.png" alt="Photo of Abdullah Hashmi" class="instructor-photo">
+                    <div class="instructor-bio">
+                        <h3>Abdullah Hashmi</h3>
+                        <p>A passionate website developer with hands-on experience building and maintaining over 30 active websites for clients worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Pricing & Enrollment Section -->
+        <section id="pricing">
+            <div class="container">
+                <h2>Join The Course Today</h2>
+                 <p class="section-subtitle">Get started on your developer journey with a special introductory price. Limited time offer!</p>
+                <div class="pricing-card">
+                    <h3>Rendered: Full Course Access</h3>
+                    <div class="price-tag">
+                        <p class="original-price">1750 PKR / 6 USD</p>
+                        <p class="discount-price">1575 PKR / 5.40 USD</p>
+                        <span class="discount-badge">10% OFF</span>
+                    </div>
+                    <a href="mailto:zyptonite.edu@gmail.com?subject=Enrollment Request for Rendered Course" class="btn btn-secondary">Enroll Via Email</a>
+                    <p class="enrollment-info">To enroll, simply click the button above or email us at <a href="mailto:zyptonite.edu@gmail.com?subject=Enrollment Request for Rendered Course">zyptonite.edu@gmail.com</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="company-name">Zyptonite</p>
+            <p>© 2024 Zyptonite. All Rights Reserved. Crafting the digital future, one line of code at a time.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Tab Functionality -->
+    <script>
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Get the target panel from the data-tab attribute
+                const tabTarget = link.getAttribute('data-tab');
+
+                // Deactivate all links and panels
+                tabLinks.forEach(item => item.classList.remove('active'));
+                tabPanels.forEach(panel => panel.classList.remove('active'));
+
+                // Activate the clicked link and its corresponding panel
+                link.classList.add('active');
+                document.getElementById(tabTarget).classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
